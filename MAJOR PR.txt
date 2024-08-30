@@ -1,0 +1,1145 @@
+1. How do you reverse a list in Python?
+   
+You can reverse a list in Python using the following methods:
+
+1. Slicing: my_list[::-1] - This creates a new list that is a reversed copy of the original list.
+
+2. Reverse() method: my_list.reverse() - This reverses the list in-place, meaning it modifies the original list.
+
+3. Reversed() function: list(reversed(my_list)) - This creates a new list that is a reversed copy of the original list.
+
+Here's an example:
+
+
+my_list = [1, 2, 3, 4, 5]
+print(my_list[::-1])  # Output: [5, 4, 3, 2, 1]
+my_list.reverse()
+print(my_list)  # Output: [5, 4, 3, 2, 1]
+print(list(reversed(my_list)))  # Output: [1, 2, 3, 4, 5]
+
+2. How do you check if a string is a palindrome?
+
+
+
+1. Slicing: Compare the string with its reverse: my_string == my_string[::-1]
+
+2. Reversed() function: Compare the string with its reverse: my_string == "".join(reversed(my_string))
+
+3. Loop: Compare characters from the start and end of the string, moving towards the center:
+
+i = 0
+j = len(my_string) - 1
+while i < j:
+    if my_string[i] != my_string[j]:
+        return False
+    i += 1
+    j -= 1
+return True
+
+
+1. Python's built-in functions: Use the reversed function and the all function with a generator expression:
+
+all(my_string[i] == my_string[-i-1] for i in range(len(my_string)//2))
+
+
+Here's an example:
+
+
+my_string = "radar"
+print(my_string == my_string[::-1])  # Output: True
+
+
+
+
+3. How do you find the factorial of a number?
+
+
+
+1. Recursive function:
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+
+1. Iterative function:
+
+def factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+
+1. Math library:
+
+import math
+math.factorial(n)
+
+
+1. Lambda function:
+
+factorial = lambda n: 1 if n == 0 else n * factorial(n-1)
+
+
+Remember to handle cases where n is a negative number or a non-integer, as the factorial is only defined for non-negative integers.
+
+Here's an example:
+
+
+print(factorial(5))  # Output: 120
+
+
+4. How do you swap two variables in Python?
+
+1. Tuple unpacking:
+
+a, b = b, a
+
+
+1. Simultaneous assignment:
+
+a, b = (b, a)
+
+
+1. Arithmetic operations (not recommended, but works):
+
+a = a + b
+b = a - b
+a = a - b
+
+
+1. XOR swap (not recommended, but works):
+
+a = a ^ b
+b = a ^ b
+a = a ^ b
+
+
+Note that the first two methods are the most Pythonic and efficient ways to swap variables.
+
+Here's an example:
+
+
+a = 5
+b = 10
+a, b = b, a
+print(a, b)  # Output: 10 5
+
+
+5. How do you find the maximum element in a list?
+
+
+1. Built-in max() function:
+
+max(my_list)
+
+
+1. Loop:
+
+max_element = my_list[0]
+for element in my_list:
+    if element > max_element:
+        max_element = element
+
+
+1. Reduce() function from the functools module:
+
+from functools import reduce
+max_element = reduce(lambda x, y: x if x > y else y, my_list)
+
+
+1. Sorting the list (not recommended for large lists, as it's less efficient):
+
+my_list.sort()
+max_element = my_list[-1]
+
+
+Note that the max() function is the most efficient and Pythonic way to find the maximum element in a list.
+
+Here's an example:
+
+
+my_list = [3, 5, 1, 9, 7]
+print(max(my_list))  # Output: 9
+
+6. How do you find the sum of all elements in a list?
+
+1. Built-in sum() function:
+
+sum(my_list)
+
+
+1. Loop:
+
+total = 0
+for element in my_list:
+    total += element
+
+
+1. Reduce() function from the functools module:
+
+from functools import reduce
+total = reduce(lambda x, y: x + y, my_list)
+
+
+1. NumPy library (if you're working with numerical arrays):
+
+import numpy as np
+total = np.sum(my_list)
+
+
+Note that the sum() function is the most efficient and Pythonic way to find the sum of all elements in a list.
+
+Here's an example:
+
+
+my_list = [1, 2, 3, 4, 5]
+print(sum(my_list))  # Output: 15
+
+7. How do you remove duplicates from a list?
+1. Convert to set and back to list:
+
+my_list = list(set(my_list))
+
+
+1. List comprehension with if condition:
+
+my_list = [x for i, x in enumerate(my_list) if x not in my_list[:i]]
+
+
+1. Use dict.fromkeys() (Python 3.7+):
+
+my_list = list(dict.fromkeys(my_list))
+
+
+1. Use collections.OrderedDict (Python 3.7+):
+
+from collections import OrderedDict
+my_list = list(OrderedDict.fromkeys(my_list))
+
+8. How do you merge two dictionaries?
+
+1. Dictionary unpacking (Python 3.5+):
+
+merged_dict = {**dict1, **dict2}
+
+
+1. update() method:
+
+merged_dict = dict1.copy()
+merged_dict.update(dict2)
+
+
+1. dict() constructor:
+
+merged_dict = dict(dict1, **dict2)
+
+
+1. ChainMap (from the collections module):
+
+from collections import ChainMap
+merged_dict = dict(ChainMap(dict1, dict2))
+
+9. How do you find the length of a string?
+
+1. Built-in len() function:
+
+length = len(my_string)
+
+
+1. _String method __len__()_:
+
+length = my_string.__len__()
+
+10. How do you convert a string to uppercase?
+
+1. String method upper():
+
+uppercase_string = my_string.upper()
+
+
+1. String method casefold() followed by upper() (for Unicode strings):
+
+uppercase_string = my_string.casefold().upper()
+
+11. How do you check if a key exists in a dictionary?
+
+1. Using the in keyword:
+
+if key in my_dict:
+    print("Key exists")
+
+
+1. Using the get() method:
+
+if my_dict.get(key) is not None:
+    print("Key exists")
+
+
+1. Using the keys() method:
+
+if key in my_dict.keys():
+    print("Key exists")
+
+
+1. Using the has_key() method (Python 2.x only):
+
+if my_dict.has_key(key):
+    print("Key exists")
+
+12. How do you sort a list of tuples based on the second
+element?
+1. Using the sort() method with a lambda function:
+
+my_list.sort(key=lambda x: x[1])
+
+
+1. Using the sorted() function with a lambda function:
+
+sorted_list = sorted(my_list, key=lambda x: x[1])
+
+
+
+13. How do you implement polymorphism in Python?
+
+
+1. Method overriding: Define a method in a subclass with the same name and signature as a method in its superclass. The subclass method overrides the superclass method.
+
+
+class Animal:
+    def sound(self):
+        print("Generic sound")
+
+class Dog(Animal):
+    def sound(self):
+        print("Woof!")
+
+
+1. Method overloading: Define multiple methods with the same name but different parameters. Python does not support method overloading in the classical sense, but you can achieve similar behavior using default arguments or variable-length arguments.
+
+
+class Calculator:
+    def calculate(self, *args):
+        if len(args) == 1:
+            return args[0] ** 2
+        elif len(args) == 2:
+            return args[0] + args[1]
+        else:
+            raise ValueError("Invalid number of arguments")
+
+
+1. Operator overloading: Define special methods to overload operators such as +, -, *, /, etc.
+
+
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+
+1. Duck typing: Use the hasattr() function to check if an object has a certain attribute or method, and then call it.
+
+
+class Duck:
+    def quack(self):
+        print("Quack!")
+
+class Person:
+    def quack(self):
+        print("I'm quacking like a duck!")
+
+def make_it_quack(obj):
+    if hasattr(obj, 'quack'):
+        obj.quack()
+
+
+14. How do you find the intersection of two sets?
+1. Using the & operator:
+
+intersection = set1 & set2
+
+
+1. Using the intersection() method:
+
+intersection = set1.intersection(set2)
+
+
+1. Using the set() function with a generator expression:
+
+intersection = set(x for x in set1 if x in set2)
+
+15. How do you create a list of even numbers from 0 to 20?
+1. Using a for loop:
+
+even_numbers = []
+for i in range(21):
+    if i % 2 == 0:
+        even_numbers.append(i)
+
+
+1. Using a list comprehension:
+
+even_numbers = [i for i in range(21) if i % 2 == 0]
+
+
+1. Using the range() function with a step:
+
+even_numbers = list(range(0, 21, 2))
+
+
+16. How do you remove all occurrences of a value from a
+list?
+
+1. Using a while loop:
+
+my_list = [1, 2, 2, 3, 2, 4, 2]
+value_to_remove = 2
+while value_to_remove in my_list:
+    my_list.remove(value_to_remove)
+
+
+1. Using a list comprehension:
+
+my_list = [1, 2, 2, 3, 2, 4, 2]
+value_to_remove = 2
+my_list = [x for x in my_list if x != value_to_remove]
+
+
+1. Using the filter() function:
+
+my_list = [1, 2, 2, 3, 2, 4, 2]
+value_to_remove = 2
+my_list = list(filter(lambda x: x != value_to_remove, my_list))
+
+
+17. How do you count the number of occurrences of each
+element in a list?
+
+
+1. Using the count() method:
+
+my_list = [1, 2, 2, 3, 2, 4, 2]
+element_counts = {element: my_list.count(element) for element in set(my_list)}
+
+
+1. Using a dictionary comprehension:
+
+my_list = [1, 2, 2, 3, 2, 4, 2]
+element_counts = {element: my_list.count(element) for element in my_list}
+
+
+1. Using the collections.Counter class:
+
+from collections import Counter
+my_list = [1, 2, 2, 3, 2, 4, 2]
+element_counts = Counter(my_list)
+
+18. How do you find the common elements in three lists?
+1. Using set intersection:
+
+list1 = [1, 2, 3, 4]
+list2 = [2, 3, 4, 5]
+list3 = [2, 4, 6, 7]
+common_elements = set(list1) & set(list2) & set(list3)
+
+
+1. Using list comprehension:
+
+list1 = [1, 2, 3, 4]
+list2 = [2, 3, 4, 5]
+list3 = [2, 4, 6, 7]
+common_elements = [element for element in list1 if element in list2 and element in list3]
+
+
+1. Using the set.intersection() method:
+
+list1 = [1, 2, 3, 4]
+list2 = [2, 3, 4, 5]
+list3 = [2, 4, 6, 7]
+common_elements = set.intersection(set(list1), set(list2), set(list3))
+
+
+19. How do you implement inheritance in Python? Provide
+an example with a base class and a derived class.
+
+class BaseClass:
+    # base class attributes and methods
+
+class DerivedClass(BaseClass):
+    # derived class attributes and methods
+
+
+Example:
+
+
+class Animal:
+    def sound(self):
+        print("Generic sound")
+
+class Dog(Animal):
+    def sound(self):
+        print("Woof!")
+
+my_dog = Dog()
+my_dog.sound()  # Output: Woof!
+
+20. How do you flatten a list of lists?
+1. Using a list comprehension:
+
+nested_list = [[1, 2], [3, 4], [5, 6]]
+flattened_list = [element for sublist in nested_list for element in sublist]
+
+
+1. Using the itertools.chain() function:
+
+import itertools
+nested_list = [[1, 2], [3, 4], [5, 6]]
+flattened_list = list(itertools.chain(*nested_list))
+
+
+1. Using the sum() function:
+
+nested_list = [[1, 2], [3, 4], [5, 6]]
+flattened_list = sum(nested_list, [])
+
+
+21. How do you find the first non-repeatin1. Using a dictionary to count character frequencies:
+
+def first_non_repeating_char(s):
+    char_count = {}
+    for char in s:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    return None
+
+
+1. Using the collections.Counter class:
+
+from collections import Counter
+def first_non_repeating_char(s):
+    char_count = Counter(s)
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    return None
+
+
+1. Using a list comprehension with count() method:
+
+def first_non_repeating_char(s):
+    return next((char for char in s if s.count(char) == 1), None)
+g character in a
+string?
+
+
+
+
+22. How do you create a class in Python and instantiate an
+object from it?
+
+
+# Define a class
+class MyClass:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        print(f"Hello, {self.name}!")
+
+# Instantiate an object from the class
+obj = MyClass("John")
+
+# Access attributes and methods
+print(obj.name)  # Output: John
+obj.greet()  # Output: Hello, John!
+
+23. How do you find the GCD of two numbers?
+
+1. Using the math.gcd() function:
+
+import math
+a = 12
+b = 15
+gcd = math.gcd(a, b)
+print(gcd)  # Output: 3
+
+
+1. Using the Euclidean algorithm:
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+a = 12
+b = 15
+gcd = gcd(a, b)
+print(gcd)  # Output: 3
+
+24. How do you generate Fibonacci numbers up to a given
+number?
+
+1. Using a loop:
+
+def fibonacci(n):
+    fib_sequence = [0, 1]
+    while fib_sequence[-1] + fib_sequence[-2] <= n:
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+    return fib_sequence
+
+print(fibonacci(100))  # Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+
+1. Using recursion:
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+fib_sequence = [fibonacci(i) for i in range(100) if fibonacci(i) <= 100]
+print(fib_sequence)  # Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+
+1. Using a generator:
+
+def fibonacci(n):
+    a, b = 0, 1
+    while a <= n:
+        yield a
+        a, b = b, a + b
+
+print(list(fibonacci(100)))  # Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+
+25. How do you convert a list of tuples into a dictionary?
+
+1. Using the dict() constructor:
+
+tuple_list = [(1, 'a'), (2, 'b'), (3, 'c')]
+my_dict = dict(tuple_list)
+print(my_dict)  # Output: {1: 'a', 2: 'b', 3: 'c'}
+
+
+1. Using a dictionary comprehension:
+
+tuple_list = [(1, 'a'), (2, 'b'), (3, 'c')]
+my_dict = {key: value for key, value in tuple_list}
+print(my_dict)  # Output: {1: 'a', 2: 'b', 3: 'c'}
+
+
+1. Using the zip() function:
+
+keys = [1, 2, 3]
+values = ['a', 'b', 'c']
+my_dict = dict(zip(keys, values))
+print(my_dict)  # Output: {1: 'a', 2: 'b', 3: 'c'}
+
+
+                                     QESTIONS ON NUMPY
+
+
+
+1. How do you create a NumPy array from a Python list?
+
+
+You can create a NumPy array from a Python list using the numpy.array() function:
+
+
+import numpy as np
+
+# Create a Python list
+my_list = [1, 2, 3, 4, 5]
+
+# Convert the list to a NumPy array
+my_array = np.array(my_list)
+
+print(my_array)  # Output: [1 2 3 4 5]
+
+
+You can also specify the data type of the array using the dtype argument:
+
+
+my_array = np.array(my_list, dtype=float)
+print(my_array)  # Output: [1. 2. 3. 4. 5.]
+
+
+
+2. How do you create a NumPy array filled with zeros?
+You can create a NumPy array filled with zeros using the numpy.zeros() function:
+
+
+import numpy as np
+
+# Create a NumPy array filled with zeros
+my_array = np.zeros(5)  # Create an array of 5 zeros
+
+print(my_array)  # Output: [0. 0. 0. 0. 0.]
+
+# Create a 2D array filled with zeros
+my_2d_array = np.zeros((3, 4))  # Create a 3x4 array of zeros
+
+print(my_2d_array)
+# Output:
+# [[0. 0. 0. 0.]
+#  [0. 0. 0. 0.]
+#  [0. 0. 0. 0.]]
+
+
+3. How do you create a NumPy array filled with ones?
+ou can create a NumPy array filled with ones using the numpy.ones() function:
+
+
+import numpy as np
+
+# Create a NumPy array filled with ones
+my_array = np.ones(5)  # Create an array of 5 ones
+
+print(my_array)  # Output: [1. 1. 1. 1. 1.]
+
+# Create a 2D array filled with ones
+my_2d_array = np.ones((3, 4))  # Create a 3x4 array of ones
+
+print(my_2d_array)
+# Output:
+# [[1. 1. 1. 1.]
+#  [1. 1. 1. 1.]
+#  [1. 1. 1. 1.]]
+
+
+4. How do you create a NumPy array with a range of values?
+import numpy as np
+
+# Create a NumPy array with a range of values
+my_array = np.arange(1, 10, 2)  # Create an array from 1 to 10 with a step of 2
+
+print(my_array)  # Output: [1 3 5 7 9]
+
+
+The numpy.arange() function takes three arguments:
+
+- start: The starting value of the range (inclusive).
+- stop: The ending value of the range (exclusive).
+- step: The step size between values (default is 1).
+
+
+5. How do you create an identity matrix using NumPy?
+
+
+mport numpy as np
+
+# Create a 3x3 identity matrix
+identity_matrix = np.eye(3)
+
+print(identity_matrix)
+# Output:
+# [[1. 0. 0.]
+#  [0. 1. 0.]
+#  [0. 0. 1.]]
+
+
+The numpy.eye() function takes two arguments:
+
+- N: The number of rows (and columns) in the identity matrix.
+- M: The number of columns in the identity matrix (optional, defaults to N).
+
+6. How do you find the shape of a NumPy array?
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Get the shape of the array
+shape = my_array.shape
+
+print(shape)  # Output: (2, 3)
+
+
+The shape attribute returns a tuple representing the number of rows and columns in the array.
+
+Alternatively, you can use the numpy.shape() function:
+
+
+shape = np.shape(my_array)
+print(shape)  # Output: (2, 3)
+
+
+7. How do you reshape a NumPy array?
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([1, 2, 3, 4, 5, 6])
+
+# Reshape the array to a 2x3 matrix
+reshaped_array = my_array.reshape(2, 3)
+
+print(reshaped_array)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+
+
+The reshape() method takes a tuple representing the new shape of the array. The total number of elements in the original array must match the total number of elements in the new shape.
+
+Note that you can also use the -1 wildcard to let NumPy infer the shape of one dimension:
+
+
+reshaped_array = my_array.reshape(2, -1)
+print(reshaped_array)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+
+
+8. How do you reverse a NumPy array?
+
+Method 1: Using np.flip()
+
+import numpy as np
+
+my_array = np.array([1, 2, 3, 4, 5])
+reversed_array = np.flip(my_array)
+
+print(reversed_array)  # Output: [5 4 3 2 1]
+
+
+Method 2: Using slicing
+
+my_array = np.array([1, 2, 3, 4, 5])
+reversed_array = my_array[::-1]
+
+print(reversed_array)  # Output: [5 4 3 2 1]
+
+9. How do you concatenate two NumPy arrays?
+You can concatenate two NumPy arrays using the np.concatenate() function:
+
+
+import numpy as np
+
+# Create two NumPy arrays
+array1 = np.array([1, 2, 3])
+array2 = np.array([4, 5, 6])
+
+# Concatenate the arrays
+concatenated_array = np.concatenate((array1, array2))
+
+print(concatenated_array)  # Output: [1 2 3 4 5 6]
+
+
+10. How do you find the maximum value in a NumPy array?
+ou can find the maximum value in a NumPy array using the np.max() function:
+
+
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([1, 2, 3, 4, 5])
+
+# Find the maximum value
+max_value = np.max(my_array)
+
+print(max_value)  # Output: 5
+
+
+If you want to find the maximum value along a specific axis in a multi-dimensional array, you can specify the axis argument:
+
+
+# Create a 2D NumPy array
+my_array = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Find the maximum value along the rows (axis=1)
+max_values = np.max(my_array, axis=1)
+print(max_values)  # Output: [3 6]
+
+# Find the maximum value along the columns (axis=0)
+max_values = np.max(my_array, axis=0)
+print(max_values)  # Output: [4 5 6]
+
+
+
+11. How do you find the minimum value in a NumPy array?
+
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([1, 2, 3, 4, 5])
+
+# Find the minimum value
+min_value = np.min(my_array)
+
+print(min_value)  # Output: 1
+
+
+If you want to find the minimum value along a specific axis in a multi-dimensional array, you can specify the axis argument:
+
+
+# Create a 2D NumPy array
+my_array = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Find the minimum value along the rows (axis=1)
+min_values = np.min(my_array, axis=1)
+print(min_values)  # Output: [1 4]
+
+# Find the minimum value along the columns (axis=0)
+min_values = np.min(my_array, axis=0)
+print(min_values)  # Output: [1 2 3]
+
+
+12. How do you find the mean of a NumPy array?
+
+
+You can find the mean of a NumPy array using the np.mean() function:
+
+
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([1, 2, 3, 4, 5])
+
+# Find the mean
+mean_value = np.mean(my_array)
+
+print(mean_value)  # Output: 3.0
+
+13. How do you find the standard deviation of a NumPy
+array?
+
+You can find the standard deviation of a NumPy array using the np.std() function:
+
+
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([1, 2, 3, 4, 5])
+
+# Find the standard deviation
+std_dev = np.std(my_array)
+
+print(std_dev)  # Output: 1.4142135623730951
+
+
+14. How do you find the sum of all elements in a NumPy
+array?
+
+You can find the sum of all elements in a NumPy array using the np.sum() function:
+
+
+import numpy as np
+
+# Create a NumPy array
+my_array = np.array([1, 2, 3, 4, 5])
+
+# Find the sum of all elements
+total_sum = np.sum(my_array)
+
+print(total_sum)  # Output: 15
+
+15. Create 1D, 2D and 3D arrays in NumPy ?
+
+
+1D Array
+
+import numpy as np
+
+# Create a 1D array
+array_1d = np.array([1, 2, 3, 4, 5])
+print(array_1d)  # Output: [1 2 3 4 5]
+
+
+2D Array
+
+# Create a 2D array
+array_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(array_2d)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]
+
+
+3D Array
+
+# Create a 3D array
+array_3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+print(array_3d)
+# Output:
+# [[[1 2]
+#   [3 4]]
+# 
+#  [[5 6]
+#   [7 8]]]
+
+16. How do you perform element-wise addition of two
+NumPy arrays?
+import numpy as np
+
+# Create two NumPy arrays
+array1 = np.array([1, 2, 3])
+array2 = np.array([4, 5, 6])
+
+# Element-wise addition using the + operator
+result = array1 + array2
+print(result)  # Output: [5 7 9]
+
+# Element-wise addition using the np.add() function
+result = np.add(array1, array2)
+print(result)  # Output: [5 7 9]
+
+
+17. How do you perform element-wise multiplication of two
+NumPy arrays?
+
+import numpy as np
+
+# Create two NumPy arrays
+array1 = np.array([1, 2, 3])
+array2 = np.array([4, 5, 6])
+
+# Element-wise multiplication using the * operator
+result = array1 * array2
+print(result)  # Output: [ 4 10 18]
+
+# Element-wise multiplication using the np.multiply() function
+result = np.multiply(array1, array2)
+print(result)  # Output: [ 4 10 18]
+
+
+18. How do you perform matrix multiplication with NumPy
+arrays?
+
+import numpy as np
+
+# Create two NumPy arrays
+array1 = np.array([[1, 2], [3, 4]])
+array2 = np.array([[5, 6], [7, 8]])
+
+# Matrix multiplication using the @ operator (Python 3.5+)
+result = array1 @ array2
+print(result)
+# Output:
+# [[19 22]
+#  [43 50]]
+
+# Matrix multiplication using the np.matmul() function
+result = np.matmul(array1, array2)
+print(result)
+# Output:
+# [[19 22]
+#  [43 50]]
+
+# Matrix multiplication using the np.dot() function
+result = np.dot(array1, array2)
+print(result)
+# Output:
+# [[19 22]
+#  [43 50]]
+
+19. How do you transpose a NumPy array?
+
+import numpy as np
+
+# Create a NumPy array
+array = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Transpose using the .T attribute
+transposed_array = array.T
+print(transposed_array)
+# Output:
+# [[1 4]
+#  [2 5]
+#  [3 6]]
+
+# Transpose using the np.transpose() function
+transposed_array = np.transpose(array)
+print(transposed_array)
+# Output:
+# [[1 4]
+#  [2 5]
+#  [3 6]]
+
+20. How do you compute the inverse of a matrix using
+NumPy?
+
+import numpy as np
+
+# Create a square matrix
+matrix = np.array([[1, 2], [3, 4]])
+
+# Compute the inverse of the matrix
+inverse_matrix = np.linalg.inv(matrix)
+
+print(inverse_matrix)
+# Output:
+# [[-2.   1. ]
+#  [ 1.5 -0.5]]
+
+
+21. How do you sort a NumPy array?
+
+You can sort a NumPy array using the np.sort() function:
+
+
+import numpy as np
+
+# Create a NumPy array
+array = np.array([3, 1, 4, 1, 5, 9, 2])
+
+# Sort the array
+sorted_array = np.sort(array)
+
+print(sorted_array)
+# Output: [1 1 2 3 4 5 9]
+
+
+22. How do you generate random numbers using NumPy?
+- Generate a single random number between 0 and 1:
+
+import numpy as np
+random_number = np.random.rand()
+print(random_number)
+
+
+- Generate an array of random numbers:
+
+random_array = np.random.rand(3, 3)  # 3x3 array of random numbers
+print(random_array)
+
+
+- Generate an array of random integers:
+
+random_integers = np.random.randint(0, 10, size=(3, 3))  # 3x3 array of random integers between 0 and 10
+print(random_integers)
+
+
+- Generate random numbers from a normal distribution:
+
+random_normals = np.random.normal(0, 1, size=(3, 3))  # 3x3 array of random numbers from a normal distribution
+print(random_normals)
+
+
+- Generate random numbers from a uniform distribution:
+
+random_uniforms = np.random.uniform(0, 1, size=(3, 3))  # 3x3 array of random numbers from a uniform distribution
+print(random_uniforms)
+
+
+
+
+
+
+
+
+
+
+
